@@ -11,7 +11,7 @@
 /** @type {import('eslint').Rule.RuleModule} */
 module.exports = {
   meta: {
-    type: null, // `problem`, `suggestion`, or `layout`
+    type: "suggestion", // `problem`, `suggestion`, or `layout`
     docs: {
       description: "petbook eslint rules",
       recommended: false,
@@ -19,9 +19,13 @@ module.exports = {
     },
     fixable: null, // Or `code` or `whitespace`
     schema: [], // Add a schema if the rule has options
+    messages:{
+      styledFileConvention: "Styled File Convention : 'styled' can only used on .style.tsx file"
+    }
   },
 
-  create(context) {
+  create: function(context) {
+    console.log(context)
     // variables should be defined here
 
     //----------------------------------------------------------------------
@@ -35,7 +39,9 @@ module.exports = {
     //----------------------------------------------------------------------
 
     return {
-      // visitor functions for different types of nodes
+        StyledFileConvention(context, node) {
+          console.log(context, node)
+        }
     };
   },
 };
