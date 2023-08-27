@@ -1,6 +1,6 @@
 /**
  * @fileoverview petbook eslint rules
- * @author 
+ * @author
  */
 "use strict";
 
@@ -11,16 +11,13 @@
 const rule = require("../../../lib/rules/petbook-rules"),
   RuleTester = require("eslint").RuleTester;
 
-
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
 ruleTester.run("petbook-rules", rule, {
-  valid: [
-    // give me some code that won't trigger a warning
-  ],
+  valid: [{ code: `console.logo("HIHI")` }],
 
   invalid: [
     {

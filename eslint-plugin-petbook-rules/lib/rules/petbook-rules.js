@@ -39,7 +39,10 @@ module.exports = {
 
     return {
         StyledFileConvention(context, node) {
-          console.log(context, node)
+          const getFilename = require('../util/getFileName').resolveBasedir(context)
+
+          console.log(node, getFilename)
+          // context.report({node:node, messageId:`${getFilename}`})
         },
         CSSConvention(context, node) {
           console.log(context, node)
