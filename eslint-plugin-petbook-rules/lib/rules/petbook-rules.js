@@ -18,7 +18,8 @@ module.exports = {
     fixable: "code", // Or `code` or `whitespace`
     schema: [], // Add a schema if the rule has options
     messages:{
-      styledFileConvention: "Styled File Convention : 'styled' can only used on .style.tsx file"
+      styledFileConvention: "Styled File Convention : 'styled' can only used on .style.tsx file",
+      cssConvention: "CSS Order : keep order by NHN CSS convention"
     }
   },
 
@@ -38,6 +39,12 @@ module.exports = {
 
     return {
         StyledFileConvention(context, node) {
+          console.log(context, node)
+        },
+        CSSConvention(context, node) {
+          console.log(context, node)
+        },
+        ClassNamingConvention(context, node) {
           console.log(context, node)
         }
     };
