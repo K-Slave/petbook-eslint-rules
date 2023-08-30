@@ -1,9 +1,9 @@
-import { minimatch } from "minimatch";
+const minimatch = require("minimatch");
 
 /**
  * 유니코드를 이용하여 char가 숫자인지 확인
  */
-export function testDigit(char: string): boolean {
+function testDigit(char) {
   const charCode = char.charCodeAt(0);
 
   return charCode >= 48 && charCode <= 57;
@@ -12,7 +12,7 @@ export function testDigit(char: string): boolean {
 /**
  * 주어진 문자 char가 대문자인지 확인
  */
-export function testUpperCase(char: string): boolean {
+function testUpperCase(char) {
   const upperCase = char.charCodeAt(0);
 
   return (
@@ -24,7 +24,7 @@ export function testUpperCase(char: string): boolean {
 /**
  * 주어진 문자 char가 소문자인지 확인
  */
-export function testLowerCase(char: string): boolean {
+function testLowerCase(char) {
   const lowerCase = char.toLowerCase();
 
   return char === lowerCase && lowerCase !== char.toUpperCase();
@@ -33,7 +33,7 @@ export function testLowerCase(char: string): boolean {
 /**
  * 주어진 문자 char가 파스칼 케이스인지 확인
  */
-export function testPascalCase(name: string): boolean {
+function testPascalCase(name) {
   // 맨 첫번째 글자가 대문자가 아니면 파스칼 케이스가 아님
   if (!testUpperCase(name.charAt(0))) {
     return false;
@@ -42,8 +42,7 @@ export function testPascalCase(name: string): boolean {
   // 숫자와 문자 이외의 문자가 있는 지 검사, 조건을 어긴 문자가 있을 경우 true, 없으면 false 반환
   const anyNonAlphaNumeric = Array.prototype.some.call(
     name.slice(1),
-    (char: string) =>
-      char.toLowerCase() === char.toUpperCase() && !testDigit(char)
+    (char) => char.toLowerCase() === char.toUpperCase() && !testDigit(char)
   );
 
   if (anyNonAlphaNumeric) {
@@ -53,14 +52,14 @@ export function testPascalCase(name: string): boolean {
   // 각 문자가 소문자 또는 숫자를 만족하는 지 판단, 조건을 어긴 문자가 있을 경우 true, 없으면 false 반환
   return Array.prototype.some.call(
     name.slice(1),
-    (char: string) => testLowerCase(char) || testDigit(char)
+    (char) => testLowerCase(char) || testDigit(char)
   );
 }
 
 /**
  * 전체가 대문자인지 검사
  */
-function testAllCaps(name: string): boolean {
+function testAllCaps(name) {
   const firstChar = name.charAt(0);
 
   // 첫번째 문자가 대문자가 아니거나 숫자면 false
@@ -92,3 +91,7 @@ function ignoreCheck(ignore, name) {
     (entry) => name === entry || minimatch(name, entry, { noglobstar: true })
   );
 }
+
+exports.testPascalCase = testPascalCase;
+exports.testAllCaps = testAllCaps;
+exports.ignoreCheck = ignoreCheck;
