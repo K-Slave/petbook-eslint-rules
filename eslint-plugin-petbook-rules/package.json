@@ -17,6 +17,7 @@
     "update:eslint-docs": "eslint-doc-generator"
   },
   "dependencies": {
+    "minimatch": "^9.0.3",
     "requireindex": "^1.2.0",
     "semver": "^7.5.4"
   },
