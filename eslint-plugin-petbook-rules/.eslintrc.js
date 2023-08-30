@@ -19,5 +19,5 @@ module.exports = {
       files: ["tests/**/*.js"],
       env: { mocha: true },
     },
-  ],
+  ]
 };
