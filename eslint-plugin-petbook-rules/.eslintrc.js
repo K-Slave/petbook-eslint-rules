@@ -9,11 +9,15 @@ module.exports = {
   ],
   env: {
     node: true,
+    es6: true
+  },
+  parserOptions: {
+    ecmaVersion: "latest"
   },
   overrides: [
     {
       files: ["tests/**/*.js"],
       env: { mocha: true },
     },
-  ],
+  ]
 };
