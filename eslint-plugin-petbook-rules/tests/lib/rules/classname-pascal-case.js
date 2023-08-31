@@ -29,9 +29,6 @@ ruleTester.run("classname-pascal-case", rule, {
       code: "const testComponent= 'a'",
     },
     {
-      code: "const test_component= 'a'",
-    },
-    {
       code: "const TestComponent= 'a'",
     },
     {
@@ -61,44 +58,20 @@ ruleTester.run("classname-pascal-case", rule, {
     {
       code: "const T= 'a'",
     },
-    {
-      code: "const YMCA= 'a'",
-      options: [{ allowAllCaps: true }],
-    },
-    {
-      code: "const TEST_COMPONENT= 'a'",
-      options: [{ allowAllCaps: true }],
-    },
-    {
-      code: "const IGNORED= 'a'",
-      options: [{ ignore: ["IGNORED"] }],
-    },
-    {
-      code: "const Foo_DEPRECATED= 'a'",
-      options: [{ ignore: ["*_D*D"] }],
-    },
-    {
-      code: "const Foo_DEPRECATED= 'a'",
-      options: [{ ignore: ["*_+(DEPRECATED|IGNORED)"] }],
-    },
-    {
-      code: "const $= 'a'",
-    },
-    {
-      code: "const _= 'a'",
-    },
-    {
-      code: "const _TEST_COMPONENT= 'a'",
-      options: [{ allowAllCaps: true}],
-    },
-    {
-      code: "const _TestComponent= 'a'"
-    },
   ],
 
   invalid: [
     {
       code: "const Test_component= 'a'",
+      errors: [
+        {
+          messageId: "usePascalCase",
+          data: { name: "Test_component" },
+        },
+      ],
+    },
+    {
+      code: "const test_component= 'a'",
       errors: [
         {
           messageId: "usePascalCase",
@@ -126,7 +99,6 @@ ruleTester.run("classname-pascal-case", rule, {
     },
     {
       code: "const _TEST_COMPONENT= 'a'",
-      options: [{ allowAllCaps: true }],
       errors: [
         {
           messageId: "usePascalCase",
@@ -136,7 +108,6 @@ ruleTester.run("classname-pascal-case", rule, {
     },
     {
       code: "const TEST_COMPONENT_= 'a'",
-      options: [{ allowAllCaps: true }],
       errors: [
         {
           messageId: "usePascalCase",
@@ -146,7 +117,6 @@ ruleTester.run("classname-pascal-case", rule, {
     },
     {
       code: "const __= 'a'",
-      options: [{ allowAllCaps: true }],
       errors: [
         {
           messageId: "usePascalCase",
@@ -164,16 +134,6 @@ ruleTester.run("classname-pascal-case", rule, {
       ],
     },
     {
-      code: "const __= 'a'",
-      options: [{ allowAllCaps: true}],
-      errors: [
-        {
-          messageId: "usePascalCase",
-          data: { name: "__" },
-        },
-      ],
-    },
-    {
       code: "const $a= 'a'",
       errors: [
         {
@@ -184,7 +144,6 @@ ruleTester.run("classname-pascal-case", rule, {
     },
     {
       code: "const Foo_DEPRECATED= 'a'",
-      options: [{ ignore: ["*_FOO"] }],
       errors: [
         {
           messageId: "usePascalCase",

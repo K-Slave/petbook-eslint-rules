@@ -13,12 +13,8 @@ function testDigit(char) {
  * 주어진 문자 char가 대문자인지 확인
  */
 function testUpperCase(char) {
-  const upperCase = char.charCodeAt(0);
-
-  return (
-    char === String.fromCharCode(upperCase) &&
-    upperCase !== char.toLowerCase().charCodeAt(0)
-  );
+  const upperCase = char.toUpperCase();
+  return char === upperCase && upperCase !== char.toLowerCase();
 }
 
 /**
@@ -26,7 +22,6 @@ function testUpperCase(char) {
  */
 function testLowerCase(char) {
   const lowerCase = char.toLowerCase();
-
   return char === lowerCase && lowerCase !== char.toUpperCase();
 }
 
@@ -70,7 +65,7 @@ function testAllCaps(name) {
   // 순회하면서 다시 검사
   for (let i = 1; i < name.length - 1; i += 1) {
     const char = name.charAt(i);
-    if (!(testUpperCase(char) || testDigit(char) || char === "_")) {
+    if (!(testUpperCase(char) || testDigit(char))) {
       return false;
     }
   }
@@ -84,7 +79,7 @@ function testAllCaps(name) {
 }
 
 /**
- * 배열 ignore에 포함된 항목과 문자열 name을 비교하여 일치하는 지 검사F
+ * 배열 ignore에 포함된 항목과 문자열 name을 비교하여 일치하는 지 검사
  */
 function ignoreCheck(ignore, name) {
   return ignore.some(
